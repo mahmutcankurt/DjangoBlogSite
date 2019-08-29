@@ -7,21 +7,24 @@
 
 
 {% block section %}
-
 <div class="container">
 	    		<div class="row d-flex">
 	    			<div class="col-xl-8 py-5 px-md-5">
 	    				<div class="row pt-md-4">
+                        {% if category %}
+<h1 style="margin-left: 500px">{{ category.title }}</h1>
+                        {% endif %}
 
-								<div class="col-md-12">
+                            {% for category in categories %}
+                            <div class="col-md-12">
 									<div class="blog-entry ftco-animate d-md-flex">
-										<a href="single.html" class="img img-2" style="background-image: url('{% static "images/image-sultanahmet.jpg"%}');"></a>
+										<a href="{{ category.slug }}" class="img img-2" style="{{ category.images.url }}"></a>
 										<div class="text text-2 pl-md-4">
-				              <h3 class="mb-2"><a href="single.html">Buraları Da Gezdim</a></h3>
+				              <h3 class="mb-2"><a href="{{ category.slug }}">{{ category.title }}</a></h3>
 				              <div class="meta-wrap">
 												<p class="meta">
 				              		<span><i class="icon-calendar mr-2"></i>June 28, 2019</span>
-				              		<span><a href="single.html"><i class="icon-folder-o mr-2"></i>Travel</a></span>
+				              		<span><a href="{{ category.slug }}"><i class="icon-folder-o mr-2"></i>Travel</a></span>
 				              		<span><i class="icon-comment2 mr-2"></i>5 Comment</span>
 				              	</p>
 			              	</div>
@@ -29,9 +32,14 @@
 				              <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
 				            </div>
 									</div>
-								</div>
+                            </div>
+                            {% endfor %}
+
+
 			    		</div>
-                    </div></div></div>
+                    </div>
+                </div>
+</div>
 
 {% endblock %}
 

@@ -4,7 +4,7 @@ from django.utils.text import slugify
 
 class category(models.Model):
     title = models.CharField(max_length=120)
-    image = models.FileField(null= True, blank=True)
+    image = models.FileField(null=True, blank=True)
     slug = models.SlugField(unique=True, editable=False, max_length=130)
 
     def __str__(self):
@@ -17,8 +17,9 @@ class category(models.Model):
 
         while category.objects.filter(slug=unique_slug).exists():
             unique_slug = slug + "-" + str(counter)
-            counter +=1
+            counter += 1
         return unique_slug
+
     def save(self, *args, **kwargs):
         self.slug = self.get_unique_slug()
 
