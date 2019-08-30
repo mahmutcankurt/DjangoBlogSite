@@ -3,6 +3,7 @@ from ckeditor.fields import RichTextField
 from django.utils.text import slugify
 from category.models import category
 
+
 class Article(models.Model):
     title = models.CharField(max_length=120)
     content = RichTextField()
@@ -10,6 +11,8 @@ class Article(models.Model):
     image = models.FileField(null=True, blank=True)
     slug = models.SlugField(unique=True, editable=False, max_length=130)
     category = models.ForeignKey(category, on_delete=models.CASCADE, related_name="articles")
+    like = models.IntegerField(default=0)
+    view = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -24,8 +27,14 @@ class Article(models.Model):
             counter += 1
 
         return unique_slug
+
     def save(self, *args, **kwargs):
         self.slug = self.get_unique_slug()
 
         return super(Article, self).save(*args, **kwargs)
+
+class Comment(models.Model):
+    writing = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="comments")
+    text = models.TextField(max_length=300)
+    releaseDate = models.DateTimeField(auto_now_add=True)
 

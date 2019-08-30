@@ -1,3 +1,9 @@
 from django.shortcuts import render
+from .models import Article
 
-# Create your views here.
+
+def article_view(request, slug):
+    writing = Article.objects.get(slug=slug)
+
+    return render(request, "", {"writing": writing})
+

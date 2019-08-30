@@ -9,7 +9,10 @@ class adminArticle(admin.ModelAdmin):
     search_fields = ["title", "content"]
     list_editable = ["title"]
 
+    class Meta:
+        model = Article
 
-admin.site.register(Article)
+
+admin.site.register(Article, adminArticle)
 
 
