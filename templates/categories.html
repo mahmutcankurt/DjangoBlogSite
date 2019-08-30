@@ -11,11 +11,12 @@
 	    		<div class="row d-flex">
 	    			<div class="col-xl-8 py-5 px-md-5">
 	    				<div class="row pt-md-4">
-                        {% if category %}
-<h1 style="margin-left: 500px">{{ category.title }}</h1>
-                        {% endif %}
+                            {% if category %}
+                                <h1 style="margin-left: 200px">{{ category.title }}</h1>
+                            {% endif %}
 
                             {% for category in categories %}
+
                             <div class="col-md-12">
 									<div class="blog-entry ftco-animate d-md-flex">
 										<a href="{{ category.slug }}" class="img img-2" style="{{ category.images.url }}"></a>
