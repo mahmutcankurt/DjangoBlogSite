@@ -33,6 +33,7 @@ class Article(models.Model):
 
         return super(Article, self).save(*args, **kwargs)
 
+
 class Comment(models.Model):
     writing = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="comments")
     text = models.TextField(max_length=300)

@@ -3,6 +3,6 @@ from .views import article_view
 
 app_name = "article"
 
-urlpatterns =[
+urlpatterns = [
     path('<str:slug>', article_view),
 ]

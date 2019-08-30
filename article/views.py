@@ -3,7 +3,7 @@ from .models import Article
 
 
 def article_view(request, slug):
-    writing = Article.objects.get(slug=slug)
+    articleView = Article.objects.get(slug=slug)
 
-    return render(request, "", {"writing": writing})
+    return render(request, "articleDetail.html", {"articleView": articleView})
 

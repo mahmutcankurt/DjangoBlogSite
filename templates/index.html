@@ -18,13 +18,13 @@
 {% for article in articles %}
 <div class="col-md-12">
 									<div class="blog-entry ftco-animate d-md-flex">
-										<a href="single.html" class="img img-2" style="background-image: url('{{ article.image.url }}');"></a>
+										<a href="{{ article.slug }}" class="img img-2" style="background-image: url('{{ article.image.url }}');"></a>
 										<div class="text text-2 pl-md-4">
 				              <h3 class="mb-2"><a href="{{ article.slug }}">{{ article.title }}</a></h3>
 				              <div class="meta-wrap">
 												<p class="meta">
 				              		<span><i class="icon-calendar mr-2"></i>{{ article.releaseDate }}</span>
-				              		<span><a href="single.html"><i class="icon-folder-o mr-2"></i>{{ article.category }}</a></span>
+				              		<span><a href="{{ article.slug }}"><i class="icon-folder-o mr-2"></i>{{ article.category }}</a></span>
 				              		<span><i class="ion-md-heart"></i> {{ article.like }} Like</span>
                                                     <span><i class="ion-md-eye"></i> {{ article.view }} Views</span>
 				              	</p>
