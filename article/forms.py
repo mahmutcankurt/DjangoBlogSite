@@ -1,5 +1,5 @@
 from django.forms import ModelForm, TextInput, Select
-from .models import Article
+from .models import Article, Comment
 
 #from captcha.fields import ReCaptchaField
 
@@ -16,3 +16,4 @@ class CreateTextForm(ModelForm):
             'title': TextInput(attrs={'class': 'form-control'}),
             'category': Select(attrs={'class': 'form-control'})
         }
+
