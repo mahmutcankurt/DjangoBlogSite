@@ -1,4 +1,4 @@
-from django.forms import ModelForm, Textarea
+from django.forms import ModelForm, TextInput, Select
 from .models import Article
 
 #from captcha.fields import ReCaptchaField
@@ -11,6 +11,8 @@ class CreateTextForm(ModelForm):
 
         exclude = ["like", "view"]
 
+
         widgets = {
-            'text': Textarea(attrs={'cols': 80, 'rows': 20, 'class': 'textClass'})
+            'title': TextInput(attrs={'class': 'form-control'}),
+            'category': Select(attrs={'class': 'form-control'})
         }
