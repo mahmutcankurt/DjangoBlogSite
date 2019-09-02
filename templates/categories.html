@@ -19,8 +19,11 @@
 
                             <div class="col-md-12">
 									<div class="blog-entry ftco-animate d-md-flex">
-										<a href="{{ category.slug }}" class="img img-2" style="{{ category.images.url }}"></a>
-										<div class="text text-2 pl-md-4">
+                                        {% if article.image %}
+                                            <a href="{% url 'article:articleDetail' article.slug %}" class="img img-2" style="background-image: url('{{ article.image.url }}');"></a>
+
+                                        {% endif %}
+                                        <div class="text text-2 pl-md-4">
 				              <h3 class="mb-2"><a href="{{ category.slug }}">{{ category.title }}</a></h3>
 				              <div class="meta-wrap">
 												<p class="meta">
@@ -38,7 +41,14 @@
 
 	    		</div>
 	    	</div>
+{% if articles.has_previous %}
+                        <a href="?page={{ articles.previous_page_number }}" class="load-more-btn"><b>PREVIOUS PAGE</b></a>
 
+                    {% endif %}
+                    {% if articles.has_next %}
+                        <a href="?page={{ articles.next_page_number }}" class="load-more-btn"><b>NEXT PAGE</b></a>
+
+                    {% endif %}
 			    		</div>
                     </div>
                 </div>

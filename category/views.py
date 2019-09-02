@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import category
 from article.models import Article
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 def index_view(request):
     categories = category.objects.all()
@@ -9,5 +10,8 @@ def index_view(request):
 
 def category_view(request, slug):
     categoryChoose = category.objects.get(slug=slug)
-    articles = Article.objects.filter(category=categoryChoose)
-    return render(request, "categories.html", {"categorysecim": categoryChoose, "articles":articles})
+    articlesList = Article.objects.filter(category=categoryChoose)
+    paginator = Paginator(articlesList, 2)
+    page = request.GET.get('page')
+    articles = paginator.get_page(page)
+    return render(request, "categories.html", {"categorysecim": categoryChoose, "articles": articles})
