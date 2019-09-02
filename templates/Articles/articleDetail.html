@@ -41,10 +41,10 @@
                                 <p class="meta">
 				              		<span><i class="icon-calendar mr-2"></i>&nbsp;{{ article.releaseDate }} </span>
 				              		<span><a href="&nbsp;{{ article.category.title }}"><i class="icon-folder-o mr-2"></i>&nbsp;{{ article.category }} </a></span>
-				              		<span><i class="ion-md-heart"></i>&nbsp;{{ article.like }} Like </span>
-                                    <span><i class="ion-md-eye"></i>&nbsp;{{ article.view }} Views</span>
 				              	</p>
 			              	</div>
+                            <br><br>
+                            {{ article.image | safe }}
 		            {{ article.content | safe }}
 
 		            <div class="about-author d-flex p-4 bg-light">
@@ -57,118 +57,40 @@
 		              </div>
 		            </div>
 
-
-		            <div class="pt-5 mt-5">
+{% for comment in comments %}
+<div class="pt-5 mt-5">
 		              <h3 class="mb-5 font-weight-bold">6 Comments</h3>
 		              <ul class="comment-list">
-		                <li class="comment">
-		                  <div class="vcard bio">
-		                    <img src="{% static 'images/person_1.jpg' %}" alt="Image placeholder">
-		                  </div>
-		                  <div class="comment-body">
-		                    <h3>John Doe</h3>
-		                    <div class="meta">October 03, 2018 at 2:21pm</div>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-		                    <p><a href="#" class="reply">Reply</a></p>
-		                  </div>
-		                </li>
 
 		                <li class="comment">
 		                  <div class="vcard bio">
 		                    <img src="{% static 'images/person_1.jpg' %}" alt="Image placeholder">
 		                  </div>
 		                  <div class="comment-body">
-		                    <h3>John Doe</h3>
-		                    <div class="meta">October 03, 2018 at 2:21pm</div>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-		                    <p><a href="#" class="reply">Reply</a></p>
-		                  </div>
-
-		                  <ul class="children">
-		                    <li class="comment">
-		                      <div class="vcard bio">
-		                        <img src="{% static 'images/person_1.jpg' %}" alt="Image placeholder">
-		                      </div>
-		                      <div class="comment-body">
-		                        <h3>John Doe</h3>
-		                        <div class="meta">October 03, 2018 at 2:21pm</div>
-		                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-		                        <p><a href="#" class="reply">Reply</a></p>
-		                      </div>
-
-
-		                      <ul class="children">
-		                        <li class="comment">
-		                          <div class="vcard bio">
-		                            <img src="{% static 'images/person_1.jpg' %}" alt="Image placeholder">
-		                          </div>
-		                          <div class="comment-body">
-		                            <h3>John Doe</h3>
-		                            <div class="meta">October 03, 2018 at 2:21pm</div>
-		                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-		                            <p><a href="#" class="reply">Reply</a></p>
-		                          </div>
-
-		                            <ul class="children">
-		                              <li class="comment">
-		                                <div class="vcard bio">
-		                                  <img src="{% static 'images/person_1.jpg' %}" alt="Image placeholder">
-		                                </div>
-		                                <div class="comment-body">
-		                                  <h3>John Doe</h3>
-		                                  <div class="meta">October 03, 2018 at 2:21pm</div>
-		                                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-		                                  <p><a href="#" class="reply">Reply</a></p>
-		                                </div>
-		                              </li>
-		                            </ul>
-		                        </li>
-		                      </ul>
-		                    </li>
-		                  </ul>
-		                </li>
-
-		                <li class="comment">
-		                  <div class="vcard bio">
-		                    <img src="{% static 'images/person_1.jpg' %}" alt="Image placeholder">
-		                  </div>
-		                  <div class="comment-body">
-		                    <h3>John Doe</h3>
-		                    <div class="meta">October 03, 2018 at 2:21pm</div>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-		                    <p><a href="#" class="reply">Reply</a></p>
-		                  </div>
+		                    <h3>Anonim</h3>
+		                    <div class="meta">{{ Comment.releaseDate }}</div>
+<p>
+    {{ Comment.text }}
+</p>		                  </div>
 		                </li>
 		              </ul>
 		              <!-- END comment-list -->
+{% endfor %}
+
+
 
 		              <div class="comment-form-wrap pt-5">
 		                <h3 class="mb-5">Leave a comment</h3>
-		                <form action="#" class="p-3 p-md-5 bg-light" method="POST">
-		                  <div class="form-group">
-		                    <label for="name">Name *</label>
-		                    <input type="text" class="form-control" id="name">
-		                  </div>
-		                  <div class="form-group">
-		                    <label for="email">Email *</label>
-		                    <input type="email" class="form-control" id="email">
-		                  </div>
-		                  <div class="form-group">
-		                    <label for="website">Website</label>
-		                    <input type="url" class="form-control" id="website">
-		                  </div>
-
-		                  <div class="form-group">
-		                    <label for="message">Message</label>
-		                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
-		                  </div>
-		                  <div class="form-group">
-                              <button class="btn py-3 px-4 btn-primary">Post Comment</button>
-
-		                    <input type="hidden" name="articleId" value="{{ article.id }}">
-		                  </div>
-
-		                </form>
+		                <form action="{% url 'article:addComment' %}" method="GET">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <textarea name="commentContent" class="text-area-messge form-control" placeholder="Write your comment here..." aria-required="true" aria-invalid="false" cols="30" rows="10"></textarea>
+                                </div>
+                                <div class="col-sm-12">
+                                    <button  id="form-submit" type="submit" class="btn py-3 px-4 btn-primary" >Post Comment</button>
+                                </div>
+                            </div>
+                        </form>
 		              </div>
 		            </div>
 			    		</div><!-- END-->
