@@ -69,9 +69,12 @@
 		                  <div class="comment-body">
 		                    <h3>Anonim</h3>
 		                    <div class="meta">{{ Comment.releaseDate }}</div>
+                              <div><strong>{{ comment.author }}</strong></div>
 <p>
-    {{ Comment.text }}
-</p>		                  </div>
+    {{ Comment.text | linebreaks }}
+</p>
+                              <a href="{% url 'article:articleDetail' article.slug %}">Comments: {{ article.comments.count }}</a>
+                          </div>
 		                </li>
 		              </ul>
 		              <!-- END comment-list -->

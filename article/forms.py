@@ -17,3 +17,7 @@ class CreateTextForm(ModelForm):
             'category': Select(attrs={'class': 'form-control'})
         }
 
+class CommentForm(ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('author', 'text')

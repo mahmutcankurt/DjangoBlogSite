@@ -35,8 +35,17 @@ class Article(models.Model):
 
 
 class Comment(models.Model):
+    author = models.CharField(max_length=200)
     name = models.CharField(max_length=120)
     writing = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="comments")
-    text = models.TextField(max_length=300)
+    text = models.TextField(max_length=600)
+    approved_comment = models.BooleanField(default=False)
     releaseDate = models.DateTimeField(auto_now_add=True)
+
+    def approve(self):
+        self.approved_comment = True
+        self.save()
+
+    def __str__(self):
+        return self.text
 

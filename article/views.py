@@ -1,6 +1,6 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, get_object_or_404, redirect
 from .models import Article, Comment
-from .forms import CreateTextForm
+from .forms import CreateTextForm, CommentForm
 
 
 def article_view(request, slug):
@@ -24,10 +24,23 @@ def CreateText_view(request):
 def addComment_view(request):
     text = request.GET.get("commentContent")
     articleId = request.GET.get("articleId")
+    article = get_object_or_404(Article, id)
 
-    if text and articleId:
-        articles = Article.objects.get(id=articleId)
-        Comment.objects.create(text=text, writing=articles)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = article
+            comment.save()
+            return redirect('articleDetail', pk=articleId)
 
-        return HttpResponseRedirect("/article/" + articles.slug)
+        else:
+            form = CommentForm()
+        return render(request, 'Articles/articleDetail.html', {'form': form})
+
+    #if text and articleId:
+        #articles = Article.objects.get(id=articleId)
+        #Comment.objects.create(text=text, writing=articles)
+
+        #return HttpResponseRedirect("/article/" + articles.slug)
     #return render(request, "Articles/articleDetail.html")
