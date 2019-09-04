@@ -5,9 +5,15 @@ from .forms import CreateTextForm, CommentForm
 
 def article_view(request, slug):
     articleView = Article.objects.get(slug=slug)
-    comments = Comment.objects.filter(text=articleView)
 
-    return render(request, "Articles/articleDetail.html", {"article": articleView, "comments":comments})
+    comment_form = CommentForm(request.POST or None)
+    if comment_form.is_valid():
+        comment = comment_form.save(commit=False)
+        comment.article = articleView
+        comment.save()
+        comment_form = CommentForm()
+
+    return render(request, "Articles/articleDetail.html", {"article": articleView, "form": comment_form})
 
 
 def CreateText_view(request):

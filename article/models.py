@@ -8,11 +8,12 @@ class Article(models.Model):
     title = models.CharField(max_length=120)
     content = RichTextField()
     releaseDate = models.DateTimeField(auto_now_add=True)
-    image = models.FileField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True)
     slug = models.SlugField(unique=True, editable=False, max_length=130)
     category = models.ForeignKey(category, on_delete=models.CASCADE, related_name="articles")
     like = models.IntegerField(default=0)
     view = models.IntegerField(default=0)
+    comment = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -39,6 +40,7 @@ class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="comments", verbose_name='Post')
     text = models.TextField(max_length=600, verbose_name='text')
     releaseDate = models.DateTimeField(auto_now_add=True)
+    approved_comment = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Comment'

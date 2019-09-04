@@ -41,7 +41,9 @@
                                 <p class="meta">
 				              		<span><i class="icon-calendar mr-2"></i>&nbsp;{{ article.releaseDate }} </span>
 				              		<span><a href="&nbsp;{{ article.category.title }}"><i class="icon-folder-o mr-2"></i>&nbsp;{{ article.category }} </a></span>
-				              	</p>
+				              	    <span><i class="ion-md-heart"></i> {{ article.like }} Like</span>
+                                    <span><i class="ion-md-cloud"></i> {{ article.comments.all | length }} Comments</span>
+                                </p>
 			              	</div>
                             <br><br>
                             {{ article.image | safe }}
@@ -81,7 +83,7 @@
                                     {{ comment.text | linebreaks }}
                                     </p>
                               </div>
-
+                              <br>
 
                               <hr>
 
@@ -95,12 +97,23 @@
 
 
 
+
 		            </div>
 </div>
 			    		</div><!-- END-->
 			    	</div>
 
 	    		</div>
+            <div class="row" style="margin-left: 70px">
+    <div class="col-lg-6 col-lg-offset-3">
+        <h3>Write Your Comment</h3>
+        <form method="POST" action="">
+            {% csrf_token %}
+            {% include 'form_template.html' %}
+            <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+        </form>
+    </div>
+</div>
 	    	</div>
 	    </section>
 		</div><!-- END COLORLIB-MAIN -->
