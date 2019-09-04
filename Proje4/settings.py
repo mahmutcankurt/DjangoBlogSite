@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # own apps
     'category',
     'article',
+    'users',
 
     #third party apps
     'ckeditor',
@@ -138,3 +139,5 @@ CKEDITOR_CONFIGS = {
         'width': 700,
     }
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

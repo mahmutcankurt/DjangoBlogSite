@@ -7,17 +7,6 @@
 
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
-
-        <nav id="colorlib-main-menu" role="navigation">
-				<ul>
-					<li><a href="/">Home</a></li>
-                    <li><a href="{% url 'category:index' %}">Categories</a></li>
-					<li><a href="{% url 'article:createText' %}">Create Article</a></li>
-					<li><a href="travel.html">Travel</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
-        </nav>
             <div class="sidebar-box pt-md-4">
 	              <form action="#" class="search-form" method="get">
 	                <div class="form-group">
@@ -27,6 +16,17 @@
 	                </div>
 	              </form>
             </div>
+            <a href="{% url 'register' %}">LOGIN</a>
+            <br><br><br>
+        <nav id="colorlib-main-menu" role="navigation">
+				<ul>
+					<li><a href="/">Home</a></li>
+                    <li><a href="{% url 'category:index' %}">Categories</a></li>
+					<li><a href="{% url 'article:createText' %}">Create Article</a></li>
+
+				</ul>
+        </nav>
+
 
 			<div class="colorlib-footer">
 				<h1 id="colorlib-logo" class="mb-4"><a href="/" style="background-image: url('{% static "images/bg_1.jpg"%}');">Travel <span>Blog</span></a></h1>
