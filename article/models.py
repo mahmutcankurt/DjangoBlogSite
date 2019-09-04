@@ -35,17 +35,15 @@ class Article(models.Model):
 
 
 class Comment(models.Model):
-    author = models.CharField(max_length=200)
-    name = models.CharField(max_length=120)
-    writing = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="comments")
-    text = models.TextField(max_length=600)
-    approved_comment = models.BooleanField(default=False)
+    author = models.CharField(max_length=200, verbose_name='author')
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="comments", verbose_name='Post')
+    text = models.TextField(max_length=600, verbose_name='text')
     releaseDate = models.DateTimeField(auto_now_add=True)
 
-    def approve(self):
-        self.approved_comment = True
-        self.save()
+    class Meta:
+        verbose_name = 'Comment'
+        verbose_name_plural = 'Comments'
 
     def __str__(self):
-        return self.text
+        return "%s - %s" % (self.article, self.author)
 
