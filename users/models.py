@@ -5,16 +5,19 @@ from django.dispatch import receiver
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(max_length=500, blank=True)
-    location = models.CharField(max_length=30, blank=True)
-    birth_date = models.DateField(null=True, blank=True)
-    email_confirmed = models.BooleanField(default=False)
+    user = models.OneToOneField(User, unique=True, on_delete=models.CASCADE)
+    birth_date = models.DateField(null=True)
+    address = models.CharField(max_length=150, null=True)
+    postal_code_4 = models.PositiveIntegerField(null=True)
+    postal_code_3 = models.PositiveIntegerField(null=True)
+    locatity = models.CharField(max_length=30, null=True)
+    child_amount = models.PositiveSmallIntegerField(null=True)
+    is_merchant = models.BooleanField(default=False)
 
     @receiver(post_save, sender=User)
     def update_user_profile(sender, instance, created, **kwargs):
-        if created(user, 'profile'):
+        if created(Profile, 'profile'):
             Profile.objects.create(user=instance)
             for user in User.objects.all():
                 Profile.objects.get_or_create(user=user)
-        instance.Profile.save()
+        instance.Profile.save(attrs={**kwargs})
