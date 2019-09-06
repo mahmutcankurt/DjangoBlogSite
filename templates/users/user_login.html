@@ -1,0 +1,19 @@
+{% load static %}
+
+{% block content %}
+
+	    				<div class="row pt-md-4">
+        <form action="{% url 'user_login' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% include 'form_template.html' %}
+            <input type="submit" value="Login" class="btn py-3 px-4 btn-primary">
+            <br>
+            {% if error_message %}
+                <p class="lead">{{ error_message }}</p>
+            {% endif %}
+        </form>
+
+                        </div>
+
+
+{% endblock %}

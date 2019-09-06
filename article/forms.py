@@ -1,5 +1,6 @@
 from django.forms import ModelForm, TextInput, Select
 from .models import Article, Comment
+from django import forms
 
 #from captcha.fields import ReCaptchaField
 
@@ -33,4 +34,5 @@ class CommentForm(ModelForm):
 
         model = Comment
         fields = ('author', 'text')
+
 
