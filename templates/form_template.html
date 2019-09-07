@@ -2,6 +2,10 @@
     <div class="form-group">
         {{ field.label_tag }}
         {{ field }}
+        {% if field.errors %}
+            <br>
+            <b>{{ field.errors }}</b>
+        {% endif %}
         <br>
     </div>
 {% endfor %}

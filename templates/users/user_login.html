@@ -1,19 +1,25 @@
+
 {% load static %}
+
 
 {% block content %}
 
+			<section class="ftco-section ftco-no-pt ftco-no-pb">
+	    	<div class="container">
+	    		<div class="row d-flex">
+	    			<div class="col-lg-8 px-md-5 py-5">
 	    				<div class="row pt-md-4">
-        <form action="{% url 'user_login' %}" method="post" enctype="multipart/form-data">
+        <form action="{% url 'user_login' %}" method="post">
             {% csrf_token %}
             {% include 'form_template.html' %}
             <input type="submit" value="Login" class="btn py-3 px-4 btn-primary">
             <br>
             {% if error_message %}
-                <p class="lead">{{ error_message }}</p>
+                <p class="errors">{{ error_message }}</p>
             {% endif %}
         </form>
 
-                        </div>
+                        </div></div></div></div></section>
 
 
 {% endblock %}
