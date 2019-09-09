@@ -3,7 +3,10 @@ from article.models import Article
 from category.models import category
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
+
+@login_required(login_url='/users/login/')
 def home_view(request):
     articlesList = Article.objects.all()
     query = request.GET.get('query', None)

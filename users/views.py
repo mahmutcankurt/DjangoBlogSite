@@ -1,5 +1,6 @@
 from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
@@ -17,7 +18,7 @@ from django.urls import reverse
 def signupView(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect(reverse('category:index'))
-    if request.method == 'POST':
+    elif request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
@@ -66,19 +67,25 @@ def user_login(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect(reverse('category:index'))
 
+    next = request.GET.get('next', None)
+
     form = LoginForm(request.POST)
     if form.is_valid():
+        next = (request.POST.get('nextt', None))
         user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
         if user:
             #user = User.objects.get(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
 
             login(request, user)
+            if next:
+                return HttpResponseRedirect(next)
             return HttpResponseRedirect(reverse('category:index'))
         else:
             error_message = 'Username or Password incorrect ! '
             return render(request, 'users/user_login.html', context={'form': form, 'error_message': error_message})
 
-    return render(request, 'users/user_login.html', context={'form': form})
+    return render(request, 'users/user_login.html', context={'form': form, 'next':next})
+
 
 def user_logout(request):
     logout(request)

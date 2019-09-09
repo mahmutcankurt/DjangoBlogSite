@@ -76,7 +76,7 @@
 		                  </div>
 		                  <div class="comment-body">
 		                    <div class="meta">
-                                <p class="lead">{{ comment.author }} , <small>{{ comment.releaseDate | timesince }} ago</small></p>
+                                <p class="lead">{{ comment.author.get_full_name }} , <small>{{ comment.releaseDate | timesince }} ago</small></p>
                             </div>
                               <div class="col-lg-12">
                                   <p>

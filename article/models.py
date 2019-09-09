@@ -36,7 +36,7 @@ class Article(models.Model):
 
 
 class Comment(models.Model):
-    author = models.CharField(max_length=200, verbose_name='author')
+    author = models.CharField(verbose_name='Author', max_length=150)
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="comments", verbose_name='Post')
     text = models.TextField(max_length=600, verbose_name='text')
     releaseDate = models.DateTimeField(auto_now_add=True)

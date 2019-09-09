@@ -12,6 +12,7 @@
         <form action="{% url 'user_login' %}" method="post">
             {% csrf_token %}
             {% include 'form_template.html' %}
+        <input type="hidden" value="{{ next }}" name="nextt">
             <input type="submit" value="Login" class="btn py-3 px-4 btn-primary">
             <br>
             {% if error_message %}

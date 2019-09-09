@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404, redirect
 from .models import Article, Comment
 from .forms import CreateTextForm, CommentForm
+from django.contrib.auth.decorators import login_required
 
 
 def article_view(request, slug):
@@ -16,6 +17,7 @@ def article_view(request, slug):
     return render(request, "Articles/articleDetail.html", {"article": articleView, "form": comment_form})
 
 
+@login_required(login_url='/users/login/')
 def CreateText_view(request):
     form = CreateTextForm(request.POST or None, request.FILES or None)
 
@@ -26,6 +28,7 @@ def CreateText_view(request):
 
         return HttpResponseRedirect("/article/" + articles.slug)
     return render(request, "Articles/CreateText.html", {"form": form})
+
 
 def addComment_view(request):
     text = request.GET.get("commentContent")
@@ -44,9 +47,4 @@ def addComment_view(request):
             form = CommentForm()
         return render(request, 'Articles/articleDetail.html', {'form': form})
 
-    #if text and articleId:
-        #articles = Article.objects.get(id=articleId)
-        #Comment.objects.create(text=text, writing=articles)
 
-        #return HttpResponseRedirect("/article/" + articles.slug)
-    #return render(request, "Articles/articleDetail.html")
