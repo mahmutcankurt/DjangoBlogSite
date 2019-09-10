@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
-from .forms import SignUpForm, LoginForm, UserProfile
+from .forms import SignUpForm, LoginForm, UserProfile, UserPasswordChangeForm
 from django.contrib import auth, messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
@@ -12,6 +12,8 @@ from django.utils.http import urlsafe_base64_decode
 from .tokens import account_activation_token
 from .models import Profile
 from django.urls import reverse
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required
 
 
 def signupView(request):
@@ -62,6 +64,16 @@ def account_activation_sent(request):
     return render(request, 'users/account_activation_sent.html')
 
 
+def user_change_password(request):
+    form = UserPasswordChangeForm(request.user, request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            user = form.save(commit=True)
+            update_session_auth_hash(request, user)
+            messages.success(request, "Your password is updated.")
+    return render(request,'users/password_change.html', context={'form': form})
+
+
 def user_login(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect(reverse('category:index'))
@@ -91,6 +103,7 @@ def user_logout(request):
     return HttpResponseRedirect(reverse('user_login'))
 
 
+@login_required(login_url='/users/login/')
 def user_edit_profile(request):
     data = {'gender': request.user.profile.gender, 'bio': request.user.profile.bio,
             'birth_date': request.user.profile.birth_date, 'phone_number': request.user.profile.phone_number

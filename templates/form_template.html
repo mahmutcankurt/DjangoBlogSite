@@ -6,6 +6,9 @@
             <br>
             <b>{{ field.errors }}</b>
         {% endif %}
+    {% if field.help_text %}
+        {{ field.help_text|safe }}
+    {% endif %}
         <br>
     </div>
 {% endfor %}

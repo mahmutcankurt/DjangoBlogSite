@@ -8,6 +8,8 @@
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
             <div class="sidebar-box pt-md-4">
+                                {% if request.user.is_authenticated %}
+
 	              <form action="#" class="search-form" method="get">
 	                <div class="form-group">
 	                  <span class="icon icon-search"></span>
@@ -15,6 +17,7 @@
 	                  <input name="query" value="{{ request.GET.query }}" type="text" class="form-control" placeholder="Type a keyword and hit enter">
 	                </div>
 	              </form>
+                {% endif %}
             </div>
 
             <ul>
