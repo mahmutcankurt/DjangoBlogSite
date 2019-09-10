@@ -1,11 +1,10 @@
 from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import render, redirect, HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
-from .forms import SignUpForm, LoginForm
-from django.contrib import auth
+from .forms import SignUpForm, LoginForm, UserProfile
+from django.contrib import auth, messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.utils.encoding import force_text
@@ -90,3 +89,34 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('user_login'))
+
+
+def user_edit_profile(request):
+    data = {'gender': request.user.profile.gender, 'bio': request.user.profile.bio,
+            'birth_date': request.user.profile.birth_date, 'phone_number': request.user.profile.phone_number
+            }
+    user_profile_form = UserProfile(request.POST or None, instance=request.user, initial=data)
+
+    if request.method == "POST":
+        if user_profile_form.is_valid():
+            user_profile_form.save(commit=True)
+
+            bio = user_profile_form.cleaned_data['bio']
+            phone_number = user_profile_form.cleaned_data['phone_number']
+            birth_date = user_profile_form.cleaned_data['birth_date']
+            gender = user_profile_form.cleaned_data['gender']
+
+            request.user.profile.gender = gender
+            request.user.profile.bio = bio
+            request.user.profile.birth_date = birth_date
+            request.user.profile.phone_number = phone_number
+
+            request.user.profile.save()
+
+            #user_edit_form = UserProfileEdit(data=request.POST, instance=request.user.profile)
+            #user_edit_form.save(commit=True)
+
+            messages.success(request, 'Your Informations Updated Successfully')
+            return HttpResponseRedirect(reverse('category:index'))
+
+    return render(request, 'users/user_edit_profile.html', context={'form': user_profile_form})

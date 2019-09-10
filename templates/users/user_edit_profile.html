@@ -1,8 +1,18 @@
-{% extends 'base.html' %}
+
 {% load static %}
 {% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
+
+
+
+<section class="ftco-section ftco-no-pt ftco-no-pb">
+	    		<div id="colorlib-main">
+
+	    	<div class="container">
+	    		<div class="row d-flex">
+	    			<div class="col-lg-8 px-md-5 py-5">
+	    				<div class="row pt-md-4">
+  <h2>Edit Your Profile</h2>
+  <form action="" method="post">
     {% csrf_token %}
     {% for field in form %}
       <p>
@@ -17,6 +27,7 @@
         {% endfor %}
       </p>
     {% endfor %}
-    <button type="submit">Sign up</button>
+    <button type="submit">Save</button>
   </form>
 {% endblock %}
+</div></div></div></div></div></section>
