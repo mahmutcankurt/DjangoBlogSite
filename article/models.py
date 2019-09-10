@@ -45,6 +45,7 @@ class Comment(models.Model):
     class Meta:
         verbose_name = 'Comment'
         verbose_name_plural = 'Comments'
+        ordering=['-releaseDate']
 
     def __str__(self):
         return "%s - %s" % (self.article, self.author)
