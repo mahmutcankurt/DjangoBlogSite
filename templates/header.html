@@ -6,7 +6,7 @@
 	<div id="colorlib-page">
 
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
-		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
+		<aside id="colorlib-aside" role="complementary" class="js-fullheight" style="background-image: url('{% static "images/white-back.jpg"%}');">
             <div class="sidebar-box pt-md-4">
                                 {% if request.user.is_authenticated %}
 
@@ -46,15 +46,8 @@
 
 
 			<div class="colorlib-footer">
-				<h1 id="colorlib-logo" class="mb-4"><a href="/" style="background-image: url('{% static "images/bg_1.jpg"%}');">Travel <span>Blog</span></a></h1>
-				<div class="mb-4">
-					<h3>Subscribe for newsletter</h3>
-					<form action="#" class="colorlib-subscribe-form">
+				<h1 id="colorlib-logo" class="mb-5"><a href="/" style="background-image: url('{% static "images/blue-world.jpg"%}');">Mahonny <span>Travel</span></a></h1>
 
-                        <!-- subscribe -->
-
-          </form>
-				</div>
 				<p class="pfooter"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 	  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 	  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
@@ -64,3 +57,4 @@
 		<div id="colorlib-main">
         		</div><!-- END COLORLIB-MAIN -->
 	</div><!-- END COLORLIB-PAGE -->
+  </body>

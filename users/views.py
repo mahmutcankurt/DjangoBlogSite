@@ -93,7 +93,7 @@ def user_login(request):
             return HttpResponseRedirect(reverse('category:index'))
         else:
             error_message = 'Username or Password incorrect ! '
-            return render(request, 'users/user_login.html', context={'form': form, 'error_message': error_message})
+            return render(request, 'users/user_login.html', context={'form': form, 'next': next, 'error_message': error_message})
 
     return render(request, 'users/user_login.html', context={'form': form, 'next':next})
 
