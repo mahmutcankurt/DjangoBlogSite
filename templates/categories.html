@@ -1,66 +1,52 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block title%}WHERE AM I?{% endblock %}
-
-
-
-
-
+{% extends 'base.html' %}  <!-- BASE.HTML EXTENDED RIGHT HERE -->
+{% load static %} <!-- STATIC FILES LOADED -->
+{% block title%}WHERE AM I?{% endblock %} <!-- TITLE CONTENT -->
 {% block section %}
 <section class="ftco-section ftco-no-pt ftco-no-pb">
-
-
-
-
-	    		<div id="colorlib-main">
-			<section class="ftco-section ftco-no-pt ftco-no-pb">
+    <div id="colorlib-main">
+        <section class="ftco-section ftco-no-pt ftco-no-pb">
 	    	<div class="container">
 	    		<div class="row d-flex">
 	    			<div class="col-lg-8 px-md-5 py-5">
 	    				<div class="row pt-md-4">
+                            <!-- CATEGORIES TITLE -->
                             {% if category %}
                                 <h1 style="margin-left: 200px">{{ category.title }}</h1>
                             {% endif %}
-
+                            <!-- FOR LOOP FOR CATEGORIES -->
                             {% for category in categories %}
-
                             <div class="col-md-12">
 									<div class="blog-entry ftco-animate d-md-flex">
                                         {% if article.image %}
                                             <a href="{% url 'article:articleDetail' article.slug %}" class="img img-2" style="background-image: url('{{ article.image.url }}');"></a>
-
                                         {% endif %}
                                         <div class="text text-2 pl-md-4">
-				              <h3 class="mb-2"><a href="{{ category.slug }}">{{ category.title }}</a></h3>
-				              <div class="meta-wrap">
+				                            <h3 class="mb-2"><a href="{{ category.slug }}">{{ category.title }}</a></h3>
+				                            <div class="meta-wrap">
 												<p class="meta">
-				              		<span><i class="icon-calendar mr-2"></i>June 28, 2019</span>
-				              		<span><a href="{{ category.slug }}"><i class="icon-folder-o mr-2"></i>Travel</a></span>
-				              		<span><i class="icon-comment2 mr-2"></i>5 Comment</span>
-				              	</p>
-			              	</div>
-				              <p class="mb-4">Everything about {{ category.title }} is here.</p>
-				              <p><a href="{{ category.slug }}" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
-				            </div>
+				              		                <span><i class="icon-calendar mr-2"></i>June 28, 2019</span>
+				              		                <span><a href="{{ category.slug }}"><i class="icon-folder-o mr-2"></i>Travel</a></span>
+				              		                <span><i class="icon-comment2 mr-2"></i>5 Comment</span>
+				              	                </p>
+			              	                </div>
+				                            <p class="mb-4">Everything about {{ category.title }} is here.</p>
+				                            <p><a href="{{ category.slug }}" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+				                        </div>
 									</div>
                             </div>
                             {% endfor %}
-
-	    		</div>
-	    	</div>
-{% if articles.has_previous %}
+	    		        </div>
+	    	        </div>
+                    <!-- PAGINATOR -->
+                    {% if articles.has_previous %}
                         <a href="?page={{ articles.previous_page_number }}" class="load-more-btn"><b>PREVIOUS PAGE</b></a>
-
                     {% endif %}
                     {% if articles.has_next %}
                         <a href="?page={{ articles.next_page_number }}" class="load-more-btn"><b>NEXT PAGE</b></a>
-
                     {% endif %}
 			    		</div>
-                    </div>
-                </div>
-</div>
-
+            </div>
+        </section>
+    </div>
 {% endblock %}
-
 </section>

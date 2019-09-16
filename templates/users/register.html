@@ -1,22 +1,23 @@
-
-{% load static %}
+{% extends 'base.html' %}  <!-- BASE.HTML EXTENDED RIGHT HERE -->
+{% load static %} <!-- STATIC FILES LOADED -->
+{% block title%}WHERE AM I?{% endblock %} <!-- TITLE CONTENT -->
 {% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
+    <h2>SignUp</h2>
+    <!-- SIGNUP REGISTER FORM -->
+    <form method="post">
     {% csrf_token %}
     {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% if field.help_text %}
-          <small style="color: grey">{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
+        <p>
+            {{ field.label_tag }}<br>
+            {{ field }}
+            {% if field.help_text %}
+            <small style="color: grey">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        </p>
     {% endfor %}
-    <button type="submit">Sign up</button>
-  </form>
+    <button type="submit">SignUp</button>
+    </form>
 {% endblock %}

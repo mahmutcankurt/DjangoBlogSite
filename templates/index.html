@@ -1,70 +1,47 @@
-
-{% extends 'base.html' %}
-{% load static %}
-{% block title%}WHERE AM I?{% endblock %}
-
-
-
+{% extends 'base.html' %}  <!-- BASE.HTML EXTENDED RIGHT HERE -->
+{% load static %} <!-- STATIC FILES LOADED -->
+{% block title%}WHERE AM I?{% endblock %} <!-- TITLE CONTENT -->
 {% block section %}
-
 			<section class="ftco-section ftco-no-pt ftco-no-pb">
-
-
-
-
 	    		<div id="colorlib-main">
-			<section class="ftco-section ftco-no-pt ftco-no-pb">
-	    	<div class="container">
-	    		<div class="row d-flex">
-	    			<div class="col-lg-8 px-md-5 py-5">
-	    				<div class="row pt-md-4">
-{% for article in articles %}
-<div class="col-md-12">
-									<div class="blog-entry ftco-animate d-md-flex">
+			        <section class="ftco-section ftco-no-pt ftco-no-pb">
+	    	            <div class="container">
+	    		            <div class="row d-flex">
+	    			            <div class="col-lg-8 px-md-5 py-5">
+	    				            <div class="row pt-md-4">
+                                    {% for article in articles %}
+                                        <div class="col-md-12">
+									    <div class="blog-entry ftco-animate d-md-flex">
+                                        <!-- ARTICLE IMAGE REQUEST -->
                                         {% if article.image %}
                                             <a href="{% url 'article:articleDetail' article.slug %}" class="img img-2" style="background-image: url('{{ article.image.url }}');"></a>
-
                                         {% endif %}
-										<div class="text text-2 pl-md-4">
-				              <h3 class="mb-2"><a href="{% url 'article:articleDetail' article.slug %}">{{ article.title }}</a></h3>
-				              <div class="meta-wrap">
-												<p class="meta">
-				              		<span><i class="icon-calendar mr-2"></i>{{ article.releaseDate }}</span>
-				              		<span><a href="{% url 'article:articleDetail' article.slug %}"><i class="icon-folder-o mr-2"></i>{{ article.category }}</a></span>
-				              		<span><i class="ion-md-heart"></i> {{ article.like }} Like</span>
+										    <div class="text text-2 pl-md-4">
+                                                <!-- ARTICLE CONTENT REQUESTS -->
+				                                <h3 class="mb-2"><a href="{% url 'article:articleDetail' article.slug %}">{{ article.title }}</a></h3>
+				                                <div class="meta-wrap">
+												    <p class="meta">
+				              		                <span><i class="icon-calendar mr-2"></i>{{ article.releaseDate }}</span>
+				              		                <span><a href="{% url 'article:articleDetail' article.slug %}"><i class="icon-folder-o mr-2"></i>{{ article.category }}</a></span>
+                                                    <span><i class="ion-md-heart"></i> {{ article.like }} Like</span>
                                                     <span><i class="ion-md-eye"></i> {{ article.view }} Views</span>
-				              	</p>
-			              	</div>
-				              <p class="mb-4">{{ article.content | safe }}</p>
-				              <p><a href="{% url 'article:articleDetail' article.slug %}" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
-                                            <br><hr>
-				            </div>
-
-                                    </div></div>
-{% endfor %}
-
-
-
-
-			    		</div><!-- END-->
-                        <div style="text-align: center">
-                            {% if articles.has_previous %}
-                        <a href="?page={{ articles.previous_page_number }}" class="load-more-btn"><b>PREVIOUS PAGE</b></a>
-
-                    {% endif %}
-                        |
-                    {% if articles.has_next %}
-                        <a href="?page={{ articles.next_page_number }}" class="load-more-btn"><b>NEXT PAGE</b></a>
-
-                    {% endif %}
-                        </div>
-
-			    	</div>
-
-	    		</div>
-            </div>
-
-            </section>
-
-
+				              	                    </p>
+			              	                    </div>
+				                                <p class="mb-4">{{ article.content | safe }}</p>
+				                                <p><a href="{% url 'article:articleDetail' article.slug %}" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+                                                <br><hr>
+				                            </div>
+                                        </div></div>
+                                    {% endfor %}
+			    		            </div><!-- END-->
+                                <!-- PAGINATOR -->
+                                <div style="text-align: center">
+                                    {% if articles.has_previous %}
+                                    <a href="?page={{ articles.previous_page_number }}" class="load-more-btn"><b>PREVIOUS PAGE</b></a>
+                                    {% endif %}|
+                                    {% if articles.has_next %}
+                                    <a href="?page={{ articles.next_page_number }}" class="load-more-btn"><b>NEXT PAGE</b></a>
+                                    {% endif %}
+                                </div>
+			    	</div></div></div></section></div></section>
 {% endblock %}

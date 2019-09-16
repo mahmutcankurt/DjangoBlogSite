@@ -3,6 +3,7 @@ from ckeditor.fields import RichTextField
 from django.utils.text import slugify
 from category.models import category
 
+# Model files of Article.
 
 class Article(models.Model):
     title = models.CharField(max_length=120)
@@ -17,6 +18,8 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+    # The slug function used to create a link.
 
     def get_unique_slug(self):
         slug = slugify(self.title)
@@ -35,6 +38,7 @@ class Article(models.Model):
         return super(Article, self).save(*args, **kwargs)
 
 
+# Comment model.
 class Comment(models.Model):
     author = models.CharField(verbose_name='Author', max_length=150)
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="comments", verbose_name='Post')

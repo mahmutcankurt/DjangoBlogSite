@@ -1,34 +1,31 @@
-
-{% load static %}
+{% extends 'base.html' %}  <!-- BASE.HTML EXTENDED RIGHT HERE -->
+{% load static %} <!-- STATIC FILES LOADED -->
+{% block title%}WHERE AM I?{% endblock %} <!-- TITLE CONTENT -->
 {% block content %}
-
-
-
-<section class="ftco-section ftco-no-pt ftco-no-pb">
-	    		<div id="colorlib-main">
-
+    <section class="ftco-section ftco-no-pt ftco-no-pb">
+        <div id="colorlib-main">
 	    	<div class="container">
 	    		<div class="row d-flex">
 	    			<div class="col-lg-8 px-md-5 py-5">
+                    <!-- USER PROFILE EDIT FORM -->
 	    				<div class="row pt-md-4">
-  <h2>Edit Your Profile</h2>
-  <form action="" method="post">
-    {% csrf_token %}
-    {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% if field.help_text %}
-          <small style="color: grey">{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
-    {% endfor %}
-    <button type="submit">Save</button>
-  <a href="{% url 'change_password' %}" class="btn btn-info">Change Password</a>
-  </form>
-{% endblock %}
+                            <h2>Edit Your Profile</h2>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                {% for field in form %}
+                                <p>
+                                    {{ field.label_tag }}<br>
+                                    {{ field }}
+                                    {% if field.help_text %}
+                                    <small style="color: grey">{{ field.help_text }}</small>
+                                    {% endif %}
+                                    {% for error in field.errors %}
+                                        <p style="color: red">{{ error }}</p>
+                                    {% endfor %}
+                                </p>
+                                {% endfor %}
+                                <button type="submit">Save</button>
+                                <a href="{% url 'change_password' %}" class="btn btn-info">Change Password</a>
+                            </form>
 </div></div></div></div></div></section>
+{% endblock %}

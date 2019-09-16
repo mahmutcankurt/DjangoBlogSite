@@ -1,28 +1,31 @@
 
-{% load static %}
-
-
+{% load static %} <!-- STATIC FILES LOADED -->
+{% block title%}WHERE AM I?{% endblock %} <!-- TITLE CONTENT -->
 {% block content %}
+<section class="ftco-section ftco-no-pt ftco-no-pb">
+	    		<div id="colorlib-main">
+			        <section class="ftco-section ftco-no-pt ftco-no-pb">
+	    	            <div class="container">
+	    		            <div class="row d-flex">
+	    			            <div class="col-lg-8 px-md-5 py-5">
+	    				            <div class="row pt-md-4">
 
-			<section class="ftco-section ftco-no-pt ftco-no-pb">
-	    	<div class="container">
-	    		<div class="row d-flex">
-	    			<div class="col-lg-8 px-md-5 py-5">
-	    				<div class="row pt-md-4">
-        <form action="{% url 'user_login' %}" method="post">
-            {% csrf_token %}
-            {% include 'form_template.html' %}
-        <input type="hidden" value="{{ next }}" name="nextt">
-            <input type="submit" value="Login" class="btn py-3 px-4 btn-primary">
-            <br>
-            {% if error_message %}
-                <p class="errors">{{ error_message }}</p>
-            {% endif %}
-        </form>
-                        or                     <a href="{% url 'register' %}">SIGNUP</a><br>
+                                    <!-- USER LOGIN PAGE FORM -->
+                                    <form method="post">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <!-- <input type="hidden" value="{{ next }}" name="next"> -->
+                                        <button type="submit" class="btn py-3 px-4 btn-primary">Login</button>
+                                    <br>
 
-
-                        </div></div></div></div></section>
-
+                                    </form>
+                                    or
+                                    <a href="{% url 'register' %}">SIGNUP</a><br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                            </section></div>
+            </section>
 
 {% endblock %}

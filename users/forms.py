@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 
 
+# User Create Form.
+
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
@@ -14,6 +16,8 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'birth_date', )
 
+
+# User Profile Form.
 
 class UserProfile(forms.ModelForm):
     MALE = 'M'
@@ -35,6 +39,7 @@ class UserProfile(forms.ModelForm):
         for field in self.fields:
             self.fields[field].widget.attrs = {'class': 'form-control'}
 
+# user Login Form.
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=50, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -53,6 +58,8 @@ class LoginForm(forms.Form):
                 raise forms.ValidationError('There is no user in our list !')
         return username
 
+
+# User Password Change Form.
 
 class UserPasswordChangeForm(PasswordChangeForm):
     def __init__(self, *args, **kwargs):

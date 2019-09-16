@@ -1,13 +1,8 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block title%}WHERE AM I?{% endblock %}
-
-
-
+{% extends 'base.html' %}  <!-- BASE.HTML EXTENDED RIGHT HERE -->
+{% load static %} <!-- STATIC FILES LOADED -->
+{% block title%}WHERE AM I?{% endblock %} <!-- TITLE CONTENT -->
 {% block section %}
-
 		<div id="colorlib-page">
-
 		<div id="colorlib-main">
 			<section class="ftco-section ftco-no-pt ftco-no-pb">
 	    	<div class="container">
@@ -15,24 +10,17 @@
 	    			<div class="col-lg-8 px-md-5 py-5">
 	    				<div class="row pt-md-4">
 	    					<h1 class="mb-3">{{ article.title }}</h1>
-                            <div class="meta-wrap">
-
-                            </div>
-                          <h3>CREATE ARTICLE</h3><br><br><br>
+                            <h3>CREATE ARTICLE</h3><br><br><br>
                             <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
-
                                 {{ form.media }}
                                 {{ form.as_p }}
-
                                 <button class="btn py-3 px-4 btn-primary">SHARE</button>
-
                             </form>
-                        </div></div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </section>
-
-        </div><!-- END COLORLIB-MAIN --></div>
-
-  <!-- loader -->
-  <!-- <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div> -->
-
+        </div>
+        </div>
 {% endblock %}

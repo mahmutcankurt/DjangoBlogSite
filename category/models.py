@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 
-
+# Model files of Category.
 class category(models.Model):
     title = models.CharField(max_length=120)
     image = models.FileField(null=True, blank=True)
@@ -9,6 +9,8 @@ class category(models.Model):
 
     def __str__(self):
         return self.title
+
+    # The slug function used to create a link.
 
     def get_unique_slug(self):
         slug = slugify(self.title)

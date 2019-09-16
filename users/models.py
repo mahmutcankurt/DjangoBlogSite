@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 def upload_to(instance, filename):
     return '%s/%s/%s' % ('profile_photo', instance.user.username, filename)
 
+# Model files of User Profile.
 
 class Profile(models.Model):
     MALE = 'M'
@@ -22,7 +23,8 @@ class Profile(models.Model):
     address_2 = models.CharField(max_length=150, null=True)
     postal_code_3 = models.PositiveIntegerField(null=True)
     locatity = models.CharField(max_length=30, null=False)
-    profile_photo = models.ImageField(upload_to=upload_to, default='profile_photo/default/user-default.jpg', verbose_name='Profile Photo', blank=False)
+    profile_photo = models.ImageField(upload_to=upload_to, default='profile_photo/default/user-default.jpg',
+                                      verbose_name='Profile Photo', blank=False)
 
     class Meta:
         verbose_name_plural = 'User Informations'

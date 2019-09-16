@@ -2,6 +2,8 @@ from django.forms import ModelForm, TextInput, Select
 from .models import Article, Comment
 
 
+# Text Create Form.
+
 class CreateTextForm(ModelForm):
 
     class Meta:
@@ -15,6 +17,8 @@ class CreateTextForm(ModelForm):
             'category': Select(attrs={'class': 'form-control'})
         }
 
+
+# Comment Create Form.
 
 class CommentForm(ModelForm):
 
@@ -31,5 +35,3 @@ class CommentForm(ModelForm):
 
         model = Comment
         fields = ('author', 'text')
-
-

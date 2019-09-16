@@ -6,6 +6,8 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
 
+# Home page views.
+
 @login_required(login_url='/users/login/')
 def home_view(request):
     articlesList = Article.objects.all()

@@ -16,6 +16,8 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 
 
+# Views for signup page.
+
 def signupView(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect(reverse('category:index'))
@@ -26,7 +28,7 @@ def signupView(request):
             user.is_active = False
             user.save()
             current_site = get_current_site(request)
-            subject = 'Activate Your MySite Account'
+            subject = 'Activate Your MahonnyL Account'
             message = render_to_string('users/account_activation_email.html', {
                 'user': user,
                 'domain': current_site.domain,
@@ -42,6 +44,8 @@ def signupView(request):
         form = SignUpForm()
     return render(request, 'users/register.html', {'form': form})
 
+
+# Views for E-mail activation.
 
 def activate(request, uidb64, token):
     try:
@@ -63,6 +67,7 @@ def activate(request, uidb64, token):
 def account_activation_sent(request):
     return render(request, 'users/account_activation_sent.html')
 
+# Views for User Password Change Page.
 
 def user_change_password(request):
     form = UserPasswordChangeForm(request.user, request.POST or None)
@@ -71,9 +76,9 @@ def user_change_password(request):
             user = form.save(commit=True)
             update_session_auth_hash(request, user)
             messages.success(request, "Your password is updated.")
-    return render(request,'users/password_change.html', context={'form': form})
+    return render(request, 'users/password_change.html', context={'form': form})
 
-
+# Views for User Login Page.
 def user_login(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect(reverse('category:index'))
@@ -82,11 +87,9 @@ def user_login(request):
 
     form = LoginForm(request.POST)
     if form.is_valid():
-        next = (request.POST.get('nextt', None))
+        next = (request.POST.get('next', None))
         user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
         if user:
-            #user = User.objects.get(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
-
             login(request, user)
             if next:
                 return HttpResponseRedirect(next)
@@ -98,10 +101,13 @@ def user_login(request):
     return render(request, 'users/user_login.html', context={'form': form, 'next':next})
 
 
+# Views for User Logout Page.
+
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('user_login'))
 
+# Views for User Profile Edit Page.
 
 @login_required(login_url='/users/login/')
 def user_edit_profile(request):
@@ -125,9 +131,6 @@ def user_edit_profile(request):
             request.user.profile.phone_number = phone_number
 
             request.user.profile.save()
-
-            #user_edit_form = UserProfileEdit(data=request.POST, instance=request.user.profile)
-            #user_edit_form.save(commit=True)
 
             messages.success(request, 'Your Informations Updated Successfully')
             return HttpResponseRedirect(reverse('category:index'))

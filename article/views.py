@@ -4,6 +4,8 @@ from .forms import CreateTextForm, CommentForm
 from django.contrib.auth.decorators import login_required
 
 
+# View function for Articles.
+
 def article_view(request, slug):
     articleView = Article.objects.get(slug=slug)
 
@@ -17,6 +19,8 @@ def article_view(request, slug):
     return render(request, "Articles/articleDetail.html", {"article": articleView, "form": comment_form})
 
 
+# View function for Create Text.
+
 @login_required(login_url='/users/login/')
 def CreateText_view(request):
     form = CreateTextForm(request.POST or None, request.FILES or None)
@@ -29,6 +33,8 @@ def CreateText_view(request):
         return HttpResponseRedirect("/article/" + articles.slug)
     return render(request, "Articles/CreateText.html", {"form": form})
 
+
+# View function for Comment Add.
 
 def addComment_view(request):
     text = request.GET.get("commentContent")
