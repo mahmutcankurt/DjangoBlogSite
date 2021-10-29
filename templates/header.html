@@ -3,7 +3,7 @@
     <div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight"
-               style="background-image: url('{% static "images/white-back.jpg"%}');">
+               style="background-color: white;">
             <div class="sidebar-box pt-md-4">
                 {% if request.user.is_authenticated %}
                     <form action="#" class="search-form" method="get">
@@ -35,7 +35,7 @@
                     <a href="{% url 'user_logout' %}" style="color:black"><i class="ion-ios-log-out"></i> <b>LOGOUT</b></a>
                 {% endif %}<br>
 			<div class="colorlib-footer">
-				<h1 id="colorlib-logo" class="mb-5"><a href="/" style="background-image: url('{% static "images/blue-world.jpg"%}');">Mahonny <span>Travel</span></a></h1>
+				<h1 id="colorlib-logo" class="mb-5"><a href="/" style="background-color: aqua;">Mahonny <span>Travel</span></a></h1>
 				<p class="pfooter">
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 	                Copyright &copy;<script>document.write(new Date().getFullYear());</script>

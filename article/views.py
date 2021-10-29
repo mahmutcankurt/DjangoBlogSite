@@ -28,7 +28,7 @@ def CreateText_view(request):
     if form.is_valid():
         form.save()
 
-        articles = Article.objects.latest("id")
+        articles = Article.objects.latest("article.id")
 
         return HttpResponseRedirect("/article/" + articles.slug)
     return render(request, "Articles/CreateText.html", {"form": form})

@@ -15,7 +15,7 @@ class Profile(models.Model):
     GENDER = ((MALE, 'Male'), (FEMALE, 'Female'), (UNDEFINED, 'Undefined'))
 
     phone_number = models.CharField(max_length=11, verbose_name='Phone Number', blank=True)
-    user = models.OneToOneField(User, unique=True, on_delete=models.CASCADE, verbose_name='User')
+    user = models.OneToOneField(User, unique=True, on_delete=models.CASCADE, verbose_name='User', primary_key=True)
     gender = models.CharField(max_length=1, default=3, verbose_name='GENDER', choices=GENDER, blank=True)
     birth_date = models.DateField(null=True)
     bio = models.CharField(null=True, max_length=500)

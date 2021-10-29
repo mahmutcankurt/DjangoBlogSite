@@ -7,11 +7,11 @@ from category.models import category
 
 class Article(models.Model):
     title = models.CharField(max_length=120)
-    content = RichTextField()
+    content = RichTextField(primary_key=True)
     releaseDate = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(null=True, blank=True)
     slug = models.SlugField(unique=True, editable=False, max_length=130)
-    category = models.ForeignKey(category, on_delete=models.CASCADE, related_name="articles")
+    category = models.ForeignKey(category, on_delete=models.CASCADE, related_name="articles", unique=True)
     like = models.IntegerField(default=0)
     view = models.IntegerField(default=0)
     comment = models.IntegerField(default=0)
@@ -40,8 +40,8 @@ class Article(models.Model):
 
 # Comment model.
 class Comment(models.Model):
-    author = models.CharField(verbose_name='Author', max_length=150)
-    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="comments", verbose_name='Post')
+    author = models.CharField(verbose_name='author', max_length=150)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="comments", verbose_name='Post', primary_key=True, unique=True)
     text = models.TextField(max_length=600, verbose_name='text')
     releaseDate = models.DateTimeField(auto_now_add=True)
     approved_comment = models.BooleanField(default=False)

@@ -3,7 +3,7 @@ from django.utils.text import slugify
 
 # Model files of Category.
 class category(models.Model):
-    title = models.CharField(max_length=120)
+    title = models.CharField(max_length=120, primary_key=True)
     image = models.FileField(null=True, blank=True)
     slug = models.SlugField(unique=True, editable=False, max_length=130)
 
