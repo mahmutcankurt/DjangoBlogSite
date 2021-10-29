@@ -7,7 +7,8 @@
 {% if user.is_authenticated %}
 {% if user.is_staff %}
 <p>
-ARTICLE OBJECTS ALL <br>
+    
+{{ article.objects.all }} <br>
 
 ARTICLE'LAR SADECE ADMIN USER'A GÖRÜNECEK<br>
 
