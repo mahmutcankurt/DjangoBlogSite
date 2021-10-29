@@ -5,7 +5,24 @@ from django.views import generic
 from datetime import datetime
 from django.conf import settings
 
+from .models import *
+
 # Create your views here.
 
-class CustomAdminPageView(generic.ListView):
-    pass
+class CustomAdminPageArticleView(generic.ListView):
+    model = CustomAdminPageArticleModel
+    template_name = 'templates/custom/article.html'
+    fields = "__all__"
+
+
+class CustomAdminPageCategoryView(generic.ListView):
+    model = CustomAdminPageArticleModel
+    template_name = 'templates/custom/category.html'
+    fields = "__all__"
+
+
+class CustomAdminPageCommentView(generic.ListView):
+    model = CustomAdminPageArticleModel
+    template_name = 'templates/custom/comment.html'
+    fields = "__all__"
+
