@@ -1,0 +1,23 @@
+{% extends 'custom/dashboard.html' %}
+{% block title %}Articles{% endblock %}
+
+{% load static %}
+{% block content %}
+
+{% if user.is_authenticated %}
+{% if user.is_staff %}
+<p>
+ARTICLE OBJECTS ALL <br>
+
+ARTICLE'LAR SADECE ADMIN USER'A GÖRÜNECEK<br>
+
+ARTICLE İÇİN ARAMA<br>
+
+EXCEL EXPORT (ID, CATEGORY, ARTICLE, COMMENT SAYISI)<br>
+</p>
+
+
+{% endif %}
+{% endif %}
+
+{% endblock %}

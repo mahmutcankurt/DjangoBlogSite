@@ -5,7 +5,10 @@ from django.views import generic
 from datetime import datetime
 from django.conf import settings
 
-from .models import *
+from article.models import *
+from category.models import *
+from users.models import *
+from home.models import *
 
 # Create your views here.
 

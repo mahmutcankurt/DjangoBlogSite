@@ -1,0 +1,20 @@
+{% extends 'custom/dashboard.html' %}
+{% block title %}Categories{% endblock %}
+
+{% load static %}
+{% block content %}
+
+{% if user.is_authenticated %}
+{% if user.is_staff %}
+
+<p>
+
+CATEGORY'LERİ LİSTELE <br>
+
+CATEGORY İÇİN ARAMA EKLE
+</p>
+
+{% endif %}
+{% endif %}
+
+{% endblock %}

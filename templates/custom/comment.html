@@ -1,0 +1,19 @@
+{% extends 'custom/dashboard.html' %}
+{% block title %}Comments{% endblock %}
+
+{% load static %}
+{% block content %}
+
+{% if user.is_authenticated %}
+{% if user.is_staff %}
+
+<p>
+ARTICLE'LARA AİT TÜM COMMENT'LER <br>
+
+COMMENT İÇİN ARAMA EKLE
+</p>
+
+{% endif %}
+{% endif %}
+
+{% endblock %}

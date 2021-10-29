@@ -1,0 +1,95 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+   
+    <title>{% block title %} ADMIN DASHBOARD {% endblock %}</title>
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+    </style>
+  </head>
+  <body>
+      <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">Admin</a>
+          </div>
+          <ul class="nav navbar-nav">
+            
+            {% if user.is_staff %} 
+            
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Home<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+
+                <li><a class="dropdown-item" href="{%url 'home-view' %}">Ana Sayfa</a></li>
+                <li><a class="dropdown-item" href="{%url 'hakkimizda-view' %}">Hakkımızda</a></li>
+                <li><a class="dropdown-item" href="{%url 'iletisim-view' %}">İletişim</a></li>
+
+              </ul>
+            </li>
+
+
+            <li><a href="{%url 'ekipman-listesi' %}">Articles</a></li>
+            <li><a href="{%url 'parca-kodu-listesi' %}">Categories</a></li>
+            <li><a href="{%url 'site-kutuk' %}">Comments</a></li>
+
+
+            {% else %}
+
+
+            <li><a class="dropdown-item" href="{%url 'home-view' %}">Ana Sayfa</a></li>
+            <li><a class="dropdown-item" href="{%url 'hakkimizda-view' %}">Hakkımızda</a></li>
+            <li><a class="dropdown-item" href="{%url 'iletisim-view' %}">İletişim</a></li>
+
+            {% endif %}
+          </ul>
+
+
+
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %} 
+            <li><a href=""> {{ user.username }}</a></li>
+              <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            {% else %}
+              <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+              <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-log-in"></span> Sign Up </a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+
+    <!-- page incredients -->
+
+    <div id="content" name="content" class="content col-sm-8" style="width: 100%; height: 100%;">
+      <div class="row justify-content-center text-center">
+        <div class="col-8">
+          {% block content %} {% endblock %}
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
